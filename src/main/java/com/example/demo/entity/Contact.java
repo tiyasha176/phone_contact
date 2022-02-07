@@ -5,6 +5,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table (name = "contact details")
@@ -13,13 +17,29 @@ public class Contact {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 private Integer id;
+@NotNull
+@Pattern(regexp = "[0-9 ]+")
+@Size(max = 12)
+private String mobile;
+@Size(max = 15)
+@NotNull
+@NotBlank
 private String first_name;
+@Size(max = 15)
 private String last_name;
+@NotNull
 private Integer age;
 private String city;
 private String street;
 private Integer house_no;
 private Integer pin;
+
+public String getMobile() {
+	return mobile;
+}
+public void setMobile(String mobile) {
+	this.mobile = mobile;
+}
 public Integer getId() {
 	return id;
 }
